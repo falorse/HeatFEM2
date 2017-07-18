@@ -38,6 +38,20 @@ void Driver::outputResult()
 	// ˄
 }
 
+void Driver::readMeshFile()
+{
+	// ˅
+	
+	// ˄
+}
+
+void Driver::readBoundaryFile()
+{
+	// ˅
+	
+	// ˄
+}
+
 // ˅
 
 // ˄

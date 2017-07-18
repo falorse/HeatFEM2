@@ -26,6 +26,8 @@ private:
 
 	double t_;
 
+	int all_nodes_size_;
+
 public:
 
 	// ノードごとの方程式の、各係数を計算してdriverに返す

@@ -52,6 +52,12 @@ public:
 	// paraviewで見れる形でアウトプット
 	void outputResult();
 
+	// inputFiles/case/からmesh.datを読んでノードと要素を登録する
+	void readMeshFile();
+
+	// inputFiles/case/からboundary.datを読んで境界条件を各ノードに登録する
+	void readBoundaryFile();
+
 	// ˅
 public:
 	
