@@ -1,0 +1,16 @@
+called: gcc
+	/home/shota/gitRepos/HeatFEM2
+	gcc
+	-O3
+	-Wall
+	-c
+	femMain.cpp
+
+called: gcc
+	/home/shota/gitRepos/HeatFEM2
+	gcc
+	-O3
+	-Wall
+	-c
+	Node.cpp
+

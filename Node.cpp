@@ -3,18 +3,17 @@
 
 // ˄
 
-double[] Node::calcEquation()
-{
-	// ˅
-	return NULL;
-	// ˄
+double* Node::calcEquation() {
+    // ˅
+    double d;
+    return &d;
+    // ˄
 }
 
-void Node::setT(double t)
-{
-	// ˅
-	
-	// ˄
+void Node::setT(double t) {
+    // ˅
+
+    // ˄
 }
 
 // ˅

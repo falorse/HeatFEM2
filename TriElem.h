@@ -6,7 +6,7 @@
 #define TRIELEM_H_
 
 // ˅
-
+#include "Node.h"
 // ˄
 
 class TriElem

@@ -30,7 +30,7 @@ public:
 
 	// ノードごとの方程式の、各係数を計算してdriverに返す
 	// n+1個のdoubleの配列になる
-	double[] calcEquation();
+	double* calcEquation();
 
 	void setT(double t);
 

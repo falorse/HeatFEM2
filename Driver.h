@@ -6,7 +6,9 @@
 #define DRIVER_H_
 
 // ˅
-
+#include "vector"
+#include "Node.h"
+#include "TriElem.h"
 // ˄
 
 class Driver
@@ -24,10 +26,15 @@ private:
 	std::vector<Node> nodes_;
 
 	// 連立方程式の左辺のn*n行列(nはノードの数)
-	double[][] left_mat_;
+	// キャッシュミスしないように一次元配列で表現
+	double* left_mat_;
 
 	// 連立方程式の右辺のn列ベクトル
-	double[] right_vector;
+	double* right_vector;
+
+	int elems_size_;
+
+	int nodes_size_;
 
 public:
 

@@ -1,0 +1,11 @@
+gcc -O3 -Wall -c femMain.cpp
+mkdir logFiles
+gcc -O3 -Wall -c Node.cpp
+Node.cpp: In member function ‘double* Node::calcEquation()’:
+Node.cpp:9:9: error: ‘NULL’ was not declared in this scope
+  return NULL;
+         ^
+Node.cpp:11:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+make: *** [Node.o] エラー 1
