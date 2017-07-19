@@ -36,3 +36,7 @@
 　
 # made by astah
 std::vector.*
+
+# diff file
+*.cpp~
+
