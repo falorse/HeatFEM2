@@ -1,8 +1,0 @@
-// ˅
-#include "std::vector.h"
-
-// ˄
-
-// ˅
-
-// ˄
