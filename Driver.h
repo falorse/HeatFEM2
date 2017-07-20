@@ -9,6 +9,12 @@
 #include "vector"
 #include "Node.h"
 #include "TriElem.h"
+#include "string"
+#include "iostream"
+#include "fstream"
+#include "cstdlib"
+#include "sstream"
+using namespace std;
 // ˄
 
 class Driver
@@ -20,10 +26,10 @@ class Driver
 private:
 
 	// 全要素
-	std::vector<TriElem> elems_;
+	std::vector<TriElem*> elems_;
 
 	// 全ノード
-	std::vector<Node> nodes_;
+	std::vector<Node*> nodes_;
 
 	// 連立方程式の左辺のn*n行列(nはノードの数)
 	// キャッシュミスしないように一次元配列で表現
@@ -38,7 +44,7 @@ private:
 
 public:
 
-	void readInputFiles();
+	string fileDir_;
 
 	// 各要素で、後にノードが方程式の計算で使う値を計算して保存する
 	void calcInvariants();
@@ -52,6 +58,8 @@ public:
 	// paraviewで見れる形でアウトプット
 	void outputResult();
 
+	void readInputFiles();
+
 	// inputFiles/args[0]/からmesh.datを読んでノードと要素を登録する
 	// メッシュファイルの形式は、
 	// （ノード数）、（x,y座標）＊ノード数、（要素数）、（要素を構成するノード番号＊３）＊要素数
@@ -64,7 +72,9 @@ public:
 
 	// ˅
 public:
+	std::vector<string> split(const string str, char sep);
 	
+	~Driver(){};
 protected:
 	
 private:

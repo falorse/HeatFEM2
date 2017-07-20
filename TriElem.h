@@ -18,11 +18,12 @@ class TriElem
 public:
 
 	// 三角形要素が持つノード
-	Node nodes_[3];
+	Node* nodes_[3];
 
 	// 要素が持つノードの番号
 	int node_indexes_[3];
 
+	// 形状関数
 	double n_[3];
 
 	// 形状関数のx偏微分
@@ -37,16 +38,27 @@ public:
 	// 要素の面積
 	double area_;
 
+	int index_;
+
 	// dn_dx,dn_dy,int_nq_by_lambda_,area_を計算してセット
 	void calcInvariant();
 
+	void setNodes(Node* a, Node* b, Node* c);
+
 	// ˅
 public:
+	TriElem();
+	
+	TriElem(int index);
+	
+	~TriElem(){};
+	
+	TriElem(Node a, Node b, Node c);
 	
 protected:
-	
+
 private:
-	
+
 	// ˄
 };
 

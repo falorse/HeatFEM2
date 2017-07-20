@@ -12,7 +12,7 @@
 class Node
 {
 	// ˅
-	
+
 	// ˄
 
 public:
@@ -30,6 +30,8 @@ private:
 
 public:
 
+	int index_;
+
 	// ノードごとの方程式の、各係数を計算してdriverに返す
 	// n+1個のdoubleの配列になる
 	double* calcEquation();
@@ -38,11 +40,24 @@ public:
 
 	// ˅
 public:
+
+	Node();
+
+	~Node(){};
 	
+	Node(double x, double y, int index, int all_nodes_size);
+
+	Node(const Node &o)
+	{
+		x_ = o.x_;
+		y_ = o.y_;
+		index_ = o.index_;
+		all_nodes_size_ = o.all_nodes_size_;
+	}
 protected:
-	
+
 private:
-	
+
 	// ˄
 };
 

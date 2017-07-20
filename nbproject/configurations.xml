@@ -2,11 +2,6 @@
 <configurationDescriptor version="100">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <df root="." name="0">
-      <df name="inputFiles">
-        <df name="case1">
-          <in>boundary.dat</in>
-        </df>
-      </df>
       <in>Driver.cpp</in>
       <in>Logger.cpp</in>
       <in>Node.cpp</in>
@@ -33,9 +28,6 @@
         <dependencyChecking>false</dependencyChecking>
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
-      <flagsDictionary>
-        <element flagsID="0" commonFlags="-O3"/>
-      </flagsDictionary>
       <codeAssistance>
       </codeAssistance>
       <makefileType>
@@ -43,7 +35,7 @@
           <buildCommandWorkingDir>.</buildCommandWorkingDir>
           <buildCommand>${MAKE} -f Makefile</buildCommand>
           <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
-          <executablePath></executablePath>
+          <executablePath>femMain</executablePath>
         </makeTool>
         <preBuild>
           <preBuildCommandWorkingDir>.</preBuildCommandWorkingDir>
@@ -51,26 +43,14 @@
         </preBuild>
       </makefileType>
       <item path="Driver.cpp" ex="false" tool="1" flavor2="0">
-        <ccTool flags="0">
-        </ccTool>
       </item>
       <item path="Logger.cpp" ex="false" tool="1" flavor2="0">
-        <ccTool flags="0">
-        </ccTool>
       </item>
       <item path="Node.cpp" ex="false" tool="1" flavor2="0">
-        <ccTool flags="0">
-        </ccTool>
       </item>
       <item path="TriElem.cpp" ex="false" tool="1" flavor2="0">
-        <ccTool flags="0">
-        </ccTool>
       </item>
       <item path="femMain.cpp" ex="false" tool="1" flavor2="0">
-        <ccTool flags="0">
-        </ccTool>
-      </item>
-      <item path="inputFiles/case1/boundary.dat" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

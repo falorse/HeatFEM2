@@ -3,13 +3,13 @@
 CC = g++
 CCOPENMP = g++ -fopenmp
 
-CFLAGS = -O3 -Wall
+CFLAGS = -g -Wall
 
 TARGETS = femMain
 
 OBJS = femMain.o Node.o TriElem.o Driver.o Logger.o
 
-all: clean logDir femMain
+all: clean femMain
 
 femMain: $(OBJS)
 
@@ -24,4 +24,3 @@ logDir:
 
 clean:
 	rm -f *.o
-	rm -r logFiles

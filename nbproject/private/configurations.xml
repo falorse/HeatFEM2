@@ -7,8 +7,6 @@
           <in>boundary.dat</in>
         </df>
       </df>
-      <df name="logFiles">
-      </df>
       <in>Driver.cpp</in>
       <in>Driver.h</in>
       <in>Logger.cpp</in>
@@ -18,6 +16,8 @@
       <in>TriElem.cpp</in>
       <in>TriElem.h</in>
       <in>femMain.cpp</in>
+      <in>std::vector.cpp</in>
+      <in>std::vector.h</in>
     </df>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
@@ -45,6 +45,8 @@
         <gdb_interceptlist>
           <gdbinterceptoptions gdb_all="false" gdb_unhandled="true" gdb_unexpected="true"/>
         </gdb_interceptlist>
+        <gdb_signals>
+        </gdb_signals>
         <gdb_options>
           <DebugOptions>
           </DebugOptions>
@@ -57,10 +59,13 @@
       <runprofile version="9">
         <runcommandpicklist>
           <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" ./inputFiles/case1</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" /inputFiles/case1</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/case1"</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>"${OUTPUT_PATH}"</runcommand>
+        <runcommand>"${OUTPUT_PATH}"   "./inputFiles/case1"</runcommand>
         <rundir>.</rundir>
-        <buildfirst>false</buildfirst>
+        <buildfirst>true</buildfirst>
         <terminal-type>0</terminal-type>
         <remove-instrumentation>0</remove-instrumentation>
         <environment>
