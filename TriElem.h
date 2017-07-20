@@ -7,6 +7,8 @@
 
 // ˅
 #include "Node.h"
+
+class Node;
 // ˄
 
 class TriElem

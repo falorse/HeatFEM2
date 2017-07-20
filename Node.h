@@ -6,7 +6,9 @@
 #define NODE_H_
 
 // ˅
+#include "vector"
 
+class TriElem;
 // ˄
 
 class Node
@@ -32,11 +34,16 @@ public:
 
 	int index_;
 
+	std::vector<TriElem*> elems_;
+
 	// ノードごとの方程式の、各係数を計算してdriverに返す
 	// n+1個のdoubleの配列になる
 	double* calcEquation();
 
 	void setT(double t);
+
+	// elems_を追加する
+	void addElemRef(TriElem* elem);
 
 	// ˅
 public:

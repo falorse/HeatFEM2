@@ -65,7 +65,7 @@ void Driver::readMeshFile()
 
 	for (i = 0; i < nodes_size_; i++) {
 		getline(in, str);
-		vector<string> line = split(str,' ');
+		vector<string> line = split(str, ' ');
 		double x = atof(line.at(0).c_str());
 		double y = atof(line.at(1).c_str());
 
@@ -83,15 +83,17 @@ void Driver::readMeshFile()
 	for (i = 0; i < elems_size_; i++) {
 
 		getline(in, str);
-		vector<string> nodes_indexes=split(str,' ');
+		vector<string> nodes_indexes = split(str, ' ');
+
+		TriElem* elem = new TriElem(i);
 
 		int index[3];
 		for (j = 0; j < 3; j++) {
 			index[j] = atoi(nodes_indexes.at(j).c_str());
+			nodes_.at(index[j]-1)->elems_.push_back(elem);
 		}
 
-		TriElem* elem=new TriElem(i);
-		elem->setNodes(nodes_.at(index[0]-1), nodes_.at(index[1]-1), nodes_.at(index[2]-1));
+		elem->setNodes(nodes_.at(index[0] - 1), nodes_.at(index[1] - 1), nodes_.at(index[2] - 1));
 
 		elems_.push_back(elem);
 	}
