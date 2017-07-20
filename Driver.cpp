@@ -44,7 +44,6 @@ void Driver::readInputFiles()
 void Driver::readMeshFile()
 {
 	// ˅
-
 	string meshFile = fileDir_ + "/mesh.dat";
 
 	ifstream in(meshFile.c_str());
@@ -90,7 +89,7 @@ void Driver::readMeshFile()
 		int index[3];
 		for (j = 0; j < 3; j++) {
 			index[j] = atoi(nodes_indexes.at(j).c_str());
-			nodes_.at(index[j]-1)->elems_.push_back(elem);
+			nodes_.at(index[j] - 1)->elems_.push_back(elem);
 		}
 
 		elem->setNodes(nodes_.at(index[0] - 1), nodes_.at(index[1] - 1), nodes_.at(index[2] - 1));
@@ -105,7 +104,49 @@ void Driver::readMeshFile()
 void Driver::readBoundaryFile()
 {
 	// ˅
+	string meshFile = fileDir_ + "/boundary.dat";
 
+	ifstream in(meshFile.c_str());
+	string str;
+
+	size_t i, j;
+
+	if (in.fail()) {
+		//TODO例外を追加
+	}
+
+	//nodeの情報を登録
+	getline(in, str);
+
+	int boundaries_size = atoi(str.c_str());
+
+	for (i = 0; i < boundaries_size; i++) {
+		
+		//base or natural で変数がわかれる
+		getline(in, str);
+		string condition = str;
+
+		//ノードの数
+		getline(in, str);
+		int nodes_size = atoi(str.c_str());
+
+		for (j = 0; j < nodes_size; j++) {
+			//ノード番号 値で格納されている
+			getline(in, str);
+			vector<string> value = split(str, ' ');
+
+			int node_index = atoi(value[0].c_str());
+			double condition_value = atof(value[1].c_str());
+
+			if (condition == "base") {
+				nodes_.at(node_index - 1)->base_condition_=condition_value;
+			} else if (condition == "natural") {
+				nodes_.at(node_index - 1)->natural_condition_=condition_value;
+			}
+		}
+	}
+	
+	in.close();
 	// ˄
 }
 

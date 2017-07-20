@@ -10,6 +10,8 @@ Node::Node(double x, double y, int index, int all_nodes_size)
 	y_ = y;
 	index_ = index;
 	all_nodes_size_ = all_nodes_size;
+	base_condition_=0;
+	natural_condition_=0;
 	elems_.clear();
 }
 // ˄

@@ -36,6 +36,10 @@ public:
 
 	std::vector<TriElem*> elems_;
 
+	double base_condition_;
+
+	double natural_condition_;
+
 	// ノードごとの方程式の、各係数を計算してdriverに返す
 	// n+1個のdoubleの配列になる
 	double* calcEquation();
