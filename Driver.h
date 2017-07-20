@@ -52,10 +52,14 @@ public:
 	// paraviewで見れる形でアウトプット
 	void outputResult();
 
-	// inputFiles/case/からmesh.datを読んでノードと要素を登録する
+	// inputFiles/args[0]/からmesh.datを読んでノードと要素を登録する
+	// メッシュファイルの形式は、
+	// （ノード数）、（x,y座標）＊ノード数、（要素数）、（要素を構成するノード番号＊３）＊要素数
 	void readMeshFile();
 
-	// inputFiles/case/からboundary.datを読んで境界条件を各ノードに登録する
+	// inputFiles/args[0]/からboundary.datを読んで境界条件を各ノードに登録する
+	// ファイルの形式は、
+	// （境界条件数）、（base or natural,境界上ノード数）、（ノード番号、境界条件の値）＊境界上ノード数
 	void readBoundaryFile();
 
 	// ˅

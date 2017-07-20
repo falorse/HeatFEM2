@@ -2,7 +2,10 @@
 <configurationDescriptor version="100">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <df root="." name="0">
-      <df name=".gitignore">
+      <df name="inputFiles">
+        <df name="case1">
+          <in>boundary.dat</in>
+        </df>
       </df>
       <df name="logFiles">
       </df>
@@ -15,8 +18,6 @@
       <in>TriElem.cpp</in>
       <in>TriElem.h</in>
       <in>femMain.cpp</in>
-      <in>std::vector.cpp</in>
-      <in>std::vector.h</in>
     </df>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
