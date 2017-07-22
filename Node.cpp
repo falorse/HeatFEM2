@@ -28,6 +28,15 @@ double* Node::calcEquation()
 		equ[i]=0;
 	}
 	
+	// 基本境界条件導入
+	if(base_condition_!=NULL)
+	{
+		equ[index_-1]=1;
+		equ[all_nodes_size_]=base_condition_;
+		return equ;
+		delete[] equ;
+	}
+	
 	for (int i = 0; i < elems_.size(); i++) {
 		TriElem* elem = elems_.at(i);
 
