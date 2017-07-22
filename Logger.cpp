@@ -8,7 +8,7 @@ std::fstream Logger::out;
 void Logger::openLog()
 {
 	// ˅
-	std::string filename="./log.txt";
+	std::string filename="./logfile.txt";
 	
 	// ログファイルを開く。outは、クラススタティック変数。
 	out.open(filename.c_str(), std::ios::out);
