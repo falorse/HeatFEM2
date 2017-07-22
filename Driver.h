@@ -15,6 +15,8 @@
 #include "cstdlib"
 #include "sstream"
 #include "Logger.h"
+#include "omp.h"
+
 using namespace std;
 // ˄
 

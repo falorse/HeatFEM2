@@ -6,6 +6,7 @@
 void Driver::calcInvariants()
 {
 	// ˅
+#pragma omp parallel for
 	for (int i = 0; i < elems_size_; i++) {
 		elems_.at(i)->calcInvariant();
 	}
