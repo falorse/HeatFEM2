@@ -64,12 +64,12 @@ double* Node::calcEquation()
 		
 	}
 
-	Logger::out<<"calcEqu"<<index_<<std::endl;
-	for(int i=0;i<all_nodes_size_+1;i++)
-	{
-		Logger::out<<equ[i]<< " ";
-	}
-	Logger::out<<std::endl;
+//	Logger::out<<"calcEqu"<<index_<<std::endl;
+//	for(int i=0;i<all_nodes_size_+1;i++)
+//	{
+//		Logger::out<<equ[i]<< " ";
+//	}
+//	Logger::out<<std::endl;
 	
 	return equ;
 	// ˄

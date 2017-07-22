@@ -24,7 +24,7 @@ void Driver::calcEquations()
 	left_mat_ = new double[nodes_size_ * nodes_size_];
 	right_vector_ = new double[nodes_size_];
 
-	//#pragma omp parallel for private(j)
+#pragma omp parallel for private(j)
 	for (i = 0; i < nodes_size_; i++) {
 		double* equ = nodes_[i]->calcEquation();
 		for (j = 0; j < nodes_size_; j++) {
@@ -40,21 +40,21 @@ void Driver::solveSimultaneousEquations()
 {
 	// ˅
 	//行列とベクトルをEigen形式に変換
-	outputEquationslog();
-
+	int i, j;
 
 	SpMat left_mat(nodes_size_, nodes_size_);
 	Eigen::VectorXd right_vec(nodes_size_);
 
-	for (int i = 0; i < nodes_size_; i++) {
-		for (int j = 0; j < nodes_size_; j++) {
+	//#pragma omp parallel for private(j)
+	for (i = 0; i < nodes_size_; i++) {
+		for (j = 0; j < nodes_size_; j++) {
 			left_mat.insert(i, j) = left_mat_[i * nodes_size_ + j];
 		}
 	}
 
 	delete[] left_mat_;
 
-	for (int i = 0; i < nodes_size_; i++) {
+	for (i = 0; i < nodes_size_; i++) {
 		right_vec(i) = right_vector_[i];
 	}
 
@@ -63,20 +63,20 @@ void Driver::solveSimultaneousEquations()
 	Logger::out << "Matrix :\n" << left_mat << std::endl << "vec :\n" << right_vec << std::endl;
 
 	// 計算 コレスキー分解
-//		Eigen::SimplicialCholesky<SpMat> chol(left_mat);
-//		Eigen::VectorXd tempretureVec = chol.solve(right_vec);
+	//		Eigen::SimplicialCholesky<SpMat> chol(left_mat);
+	//		Eigen::VectorXd tempretureVec = chol.solve(right_vec);
 
 	// 計算　LU分解
 	Eigen::SparseLU<SpMat > lu;
 	lu.compute(left_mat);
 	Eigen::VectorXd tempretureVec = lu.solve(right_vec);
 
-	for (int i = 0; i < nodes_size_; i++) {
+	for (i = 0; i < nodes_size_; i++) {
 		nodes_[i]->t_ = tempretureVec[i];
 	}
 
 	Logger::out << "tempreture Vec" << std::endl;
-	for (int i = 0; i < nodes_size_; i++) {
+	for (i = 0; i < nodes_size_; i++) {
 		Logger::out << tempretureVec[i] << " ";
 	}
 	Logger::out << std::endl;
@@ -111,7 +111,7 @@ void Driver::outputResult()
 	for (i = 0; i < elems_size_; i++) {
 		wf << 3 << " ";
 		for (j = 0; j < 3; j++) {
-			wf << elems_[i]->nodes_[j]->index_-1;
+			wf << elems_[i]->nodes_[j]->index_ - 1;
 			if (j != 2) {
 				wf << " ";
 			}
