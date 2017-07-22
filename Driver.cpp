@@ -75,9 +75,7 @@ void Driver::outputResult()
     wf << "SCALARS t double 1" << std::endl;
     wf << "LOOKUP_TABLE default" << std::endl;
     for (i = 0; i < nodes_size_; i++) {
-//                wf << nodes_[i]->t << std::endl;
-		                wf << i << std::endl;
-
+                wf << nodes_[i]->t << std::endl;
     }
 
     std::cout<<"write file end"<<std::endl;
