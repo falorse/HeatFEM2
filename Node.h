@@ -46,9 +46,6 @@ public:
 
 	void setT(double t);
 
-	// elems_を追加する
-	void addElemRef(TriElem* elem);
-
 	// ˅
 public:
 

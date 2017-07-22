@@ -6,8 +6,7 @@
 void Driver::calcInvariants()
 {
 	// ˅
-	for(int i=0;i<elems_size_;i++)
-	{
+	for (int i = 0; i < elems_size_; i++) {
 		elems_.at(i)->calcInvariant();
 	}
 	// ˄
@@ -17,21 +16,21 @@ void Driver::calcEquations()
 {
 	// ˅
 	// 各ノードの方程式を取得して、全体の連立方程式の左の行列と右のベクトルを構成する
-	
-	left_mat_=new double[nodes_size_*nodes_size_];
-	right_vector_=new double[nodes_size_];
-	
-	
-	for(int i=0;i<nodes_size_;i++)
-	{
-		double* equ=nodes_[i]->calcEquation();
-		for(int j=0;j<nodes_size_;j++)
-		{
-			left_mat_[i*nodes_size_+j]=equ[j];
+
+	left_mat_ = new double[nodes_size_ * nodes_size_];
+	right_vector_ = new double[nodes_size_];
+
+
+	for (int i = 0; i < nodes_size_; i++) {
+		double* equ = nodes_[i]->calcEquation();
+		for (int j = 0; j < nodes_size_; j++) {
+			left_mat_[i * nodes_size_ + j] = equ[j];
 		}
-		right_vector_[i]=equ[nodes_size_];
+		right_vector_[i] = equ[nodes_size_];
 	}
-	
+
+	outputEquationslog();
+
 	// ˄
 }
 
@@ -45,56 +44,53 @@ void Driver::solveSimultaneousEquations()
 void Driver::outputResult()
 {
 	// ˅
-    size_t i, j;
-    
-    std::string filename= "./result.vtk";
+	size_t i, j;
 
-    std::cout<<"writeField "<<filename<<std::endl;
-    
-    std::ofstream wf;
-    
-    const char *p;
-    p = filename.c_str();
+	std::string filename = "./result.vtk";
 
-    wf.open(p, std::ios_base::out);
+	std::cout << "writeField " << filename << std::endl;
 
-    wf << "# vtk DataFile Version 2.0" << std::endl;
-    wf << filename << std::endl;
-    wf << "ASCII" << std::endl ;
-    wf << "DATASET UNSTRUCTURED_GRID" << std::endl;
+	std::ofstream wf;
 
-    wf << "POINTS " << nodes_size_ << " float" << std::endl;
-    for (i = 0; i < nodes_size_; i++) {
-        wf << nodes_[i]->x_ << " " << nodes_[i]->y_ << " " << 0 << std::endl;
-    }
+	wf.open(filename.c_str(), std::ios_base::out);
 
-    wf << "CELLS " << elems_size_ << " " << elems_size_ * (3 + 1) << std::endl;
-    for (i = 0; i < elems_size_; i++) {
-        wf << 3 << " ";
-        for (j = 0; j < 3; j++) {
-            wf << elems_[i]->nodes_[j]->index_ ;
-            if (j != 2) {
-                wf << " ";
-            }
-        }
-        wf << std::endl;
-    }
+	wf << "# vtk DataFile Version 2.0" << std::endl;
+	wf << filename << std::endl;
+	wf << "ASCII" << std::endl;
+	wf << "DATASET UNSTRUCTURED_GRID" << std::endl;
 
-    wf << "CELL_TYPES " << elems_size_ << std::endl;
-    for (i = 0; i < elems_.size(); i++) {
-        wf << 5 <<std::endl;
-    }
+	wf << "POINTS " << nodes_size_ << " float" << std::endl;
+	for (i = 0; i < nodes_size_; i++) {
+		wf << nodes_[i]->x_ << " " << nodes_[i]->y_ << " " << 0 << std::endl;
+	}
+
+	wf << "CELLS " << elems_size_ << " " << elems_size_ * (3 + 1) << std::endl;
+	for (i = 0; i < elems_size_; i++) {
+		wf << 3 << " ";
+		for (j = 0; j < 3; j++) {
+			wf << elems_[i]->nodes_[j]->index_;
+			if (j != 2) {
+				wf << " ";
+			}
+		}
+		wf << std::endl;
+	}
+
+	wf << "CELL_TYPES " << elems_size_ << std::endl;
+	for (i = 0; i < elems_.size(); i++) {
+		wf << 5 << std::endl;
+	}
 
 
-    wf << "POINT_DATA " << nodes_size_ << std::endl;
-    wf << "SCALARS t double 1" << std::endl;
-    wf << "LOOKUP_TABLE default" << std::endl;
-    for (i = 0; i < nodes_size_; i++) {
-                wf << nodes_[i]->t_ << std::endl;
-    }
+	wf << "POINT_DATA " << nodes_size_ << std::endl;
+	wf << "SCALARS t double 1" << std::endl;
+	wf << "LOOKUP_TABLE default" << std::endl;
+	for (i = 0; i < nodes_size_; i++) {
+		wf << nodes_[i]->t_ << std::endl;
+	}
 
-    std::cout<<"write file end"<<std::endl;
-    wf.close();
+	std::cout << "write file end" << std::endl;
+	wf.close();
 	// ˄
 }
 
@@ -188,7 +184,7 @@ void Driver::readBoundaryFile()
 	int boundaries_size = atoi(str.c_str());
 
 	for (i = 0; i < boundaries_size; i++) {
-		
+
 		//base or natural で変数がわかれる
 		getline(in, str);
 		string condition = str;
@@ -206,13 +202,13 @@ void Driver::readBoundaryFile()
 			double condition_value = atof(value[1].c_str());
 
 			if (condition == "base") {
-				nodes_.at(node_index - 1)->base_condition_=condition_value;
+				nodes_.at(node_index - 1)->base_condition_ = condition_value;
 			} else if (condition == "natural") {
-				nodes_.at(node_index - 1)->natural_condition_=condition_value;
+				nodes_.at(node_index - 1)->natural_condition_ = condition_value;
 			}
 		}
 	}
-	
+
 	in.close();
 	// ˄
 }
@@ -228,5 +224,18 @@ std::vector<string> Driver::split(string str, char sep)
 		v.push_back(buffer);
 	}
 	return v;
+}
+
+void Driver::outputEquationslog()
+{
+	Logger::out<<"outputEquationsLog"<<std::endl;
+	for (int i = 0; i < nodes_size_; i++) {
+		for (int j = 0; j < nodes_size_; j++) {
+			Logger::out << left_mat_[i * nodes_size_ + j] << " ";
+		}
+		Logger::out<< "| t_"<<i<< " = "<<right_vector_[i];
+		Logger::out << std::endl;
+	}
+	
 }
 // ˄

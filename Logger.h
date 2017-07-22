@@ -6,7 +6,8 @@
 #define LOGGER_H_
 
 // ˅
-
+#include "iostream"
+#include "fstream"
 // ˄
 
 class Logger
@@ -23,6 +24,11 @@ public:
 
 	// ˅
 public:
+	static std::fstream out;
+	
+	~Logger(){};
+	
+	Logger(){};
 	
 protected:
 	

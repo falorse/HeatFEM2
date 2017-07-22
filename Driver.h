@@ -14,6 +14,7 @@
 #include "fstream"
 #include "cstdlib"
 #include "sstream"
+#include "Logger.h"
 using namespace std;
 // ˄
 
@@ -73,6 +74,8 @@ public:
 	// ˅
 public:
 	std::vector<string> split(const string str, char sep);
+	
+	void outputEquationslog();
 	
 	~Driver(){};
 protected:

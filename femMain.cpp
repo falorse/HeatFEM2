@@ -2,12 +2,17 @@
 #include <string>
 
 #include "Driver.h"
+#include "Logger.h"
 
 using namespace std;
 
 int main(int argc, char* argv[])
 {
 
+	Logger logger;
+	
+	logger.openLog();
+	
 	Driver driver;
 
 	driver.fileDir_ = argv[1];
@@ -22,5 +27,7 @@ int main(int argc, char* argv[])
 	
 	driver.outputResult();
 
+	logger.closeLog();
+	
 	return 0;
 }
