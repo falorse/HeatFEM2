@@ -35,7 +35,6 @@ double* Node::calcEquation()
 		equ[index_-1]=1;
 		equ[all_nodes_size_]=base_condition_;
 		return equ;
-		delete[] equ;
 	}
 	
 	for (int i = 0; i < elems_.size(); i++) {
@@ -73,15 +72,6 @@ double* Node::calcEquation()
 	Logger::out<<std::endl;
 	
 	return equ;
-	
-	delete[] equ;
-	// ˄
-}
-
-void Node::setT(double t)
-{
-	// ˅
-
 	// ˄
 }
 

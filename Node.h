@@ -44,8 +44,6 @@ public:
 	// n+1個のdoubleの配列になる
 	double* calcEquation();
 
-	void setT(double t);
-
 	// ˅
 public:
 

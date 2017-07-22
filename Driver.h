@@ -20,6 +20,8 @@
 // Eigenがないとコンパイルエラーを起こすので注意
 #include "./Eigen/Core"
 #include "./Eigen/Sparse"
+#include "./Eigen/SparseLU"
+
 using namespace std;
 // ˄
 
@@ -40,6 +42,7 @@ private:
 	// 連立方程式の左辺のn*n行列(nはノードの数)
 	// キャッシュミスしないように一次元配列で表現
 	// ソルバ比較もしやすいようにとりあえず一次元配列で表現したけどあとで型変換の必要がある
+	// 大規模すぎるとメモリが足りなくなるのでソルバ固定なら使わない方がいい
 	double* left_mat_;
 
 	// 連立方程式の右辺のn列ベクトル

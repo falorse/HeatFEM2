@@ -19,12 +19,12 @@ void Driver::calcEquations()
 {
 	// ˅
 	// 各ノードの方程式を取得して、全体の連立方程式の左の行列と右のベクトルを構成する
-	int i,j;
-	
+	int i, j;
+
 	left_mat_ = new double[nodes_size_ * nodes_size_];
 	right_vector_ = new double[nodes_size_];
 
-//#pragma omp parallel for private(j)
+	//#pragma omp parallel for private(j)
 	for (i = 0; i < nodes_size_; i++) {
 		double* equ = nodes_[i]->calcEquation();
 		for (j = 0; j < nodes_size_; j++) {
@@ -60,9 +60,16 @@ void Driver::solveSimultaneousEquations()
 
 	delete[] right_vector_;
 
-	// 計算
-	Eigen::SimplicialCholesky<SpMat> chol(left_mat);
-	Eigen::VectorXd tempretureVec = chol.solve(right_vec);
+	Logger::out << "Matrix :\n" << left_mat << std::endl << "vec :\n" << right_vec << std::endl;
+
+	// 計算 コレスキー分解
+//		Eigen::SimplicialCholesky<SpMat> chol(left_mat);
+//		Eigen::VectorXd tempretureVec = chol.solve(right_vec);
+
+	// 計算　LU分解
+	Eigen::SparseLU<SpMat > lu;
+	lu.compute(left_mat);
+	Eigen::VectorXd tempretureVec = lu.solve(right_vec);
 
 	for (int i = 0; i < nodes_size_; i++) {
 		nodes_[i]->t_ = tempretureVec[i];
@@ -104,7 +111,7 @@ void Driver::outputResult()
 	for (i = 0; i < elems_size_; i++) {
 		wf << 3 << " ";
 		for (j = 0; j < 3; j++) {
-			wf << elems_[i]->nodes_[j]->index_;
+			wf << elems_[i]->nodes_[j]->index_-1;
 			if (j != 2) {
 				wf << " ";
 			}
@@ -190,8 +197,8 @@ void Driver::readMeshFile()
 			nodes_.at(index[j] - 1)->elems_.push_back(elem);
 		}
 
-		elem->q_by_lambda_=atof(nodes_indexes.at(3).c_str());
-		
+		elem->q_by_lambda_ = atof(nodes_indexes.at(3).c_str());
+
 		elem->setNodes(nodes_.at(index[0] - 1), nodes_.at(index[1] - 1), nodes_.at(index[2] - 1));
 
 		elems_.push_back(elem);
