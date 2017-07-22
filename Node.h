@@ -24,9 +24,9 @@ public:
 
 	double y_;
 
-private:
-
 	double t_;
+
+private:
 
 	int all_nodes_size_;
 

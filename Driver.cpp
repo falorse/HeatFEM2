@@ -16,6 +16,21 @@ void Driver::calcInvariants()
 void Driver::calcEquations()
 {
 	// ˅
+	// 各ノードの方程式を取得して、全体の連立方程式の左の行列と右のベクトルを構成する
+	
+	left_mat_=new double[nodes_size_*nodes_size_];
+	right_vector_=new double[nodes_size_];
+	
+	
+	for(int i=0;i<nodes_size_;i++)
+	{
+		double* equ=nodes_[i]->calcEquation();
+		for(int j=0;j<nodes_size_;j++)
+		{
+			left_mat_[i*nodes_size_+j]=equ[j];
+		}
+		right_vector_[i]=equ[nodes_size_];
+	}
 	
 	// ˄
 }
@@ -75,7 +90,7 @@ void Driver::outputResult()
     wf << "SCALARS t double 1" << std::endl;
     wf << "LOOKUP_TABLE default" << std::endl;
     for (i = 0; i < nodes_size_; i++) {
-                wf << nodes_[i]->t << std::endl;
+                wf << nodes_[i]->t_ << std::endl;
     }
 
     std::cout<<"write file end"<<std::endl;

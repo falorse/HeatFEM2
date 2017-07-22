@@ -8,7 +8,7 @@ void TriElem::calcInvariant()
 {
 	// ˅
 	// dn_dx,dn_dy,int_nq_by_lambda_,area_を計算してセット
-	size_t i,j;
+	int i,j;
 	
 	// 各ノードの座標
 	double x[3] = {nodes_[0]->x_, nodes_[1]->x_, nodes_[2]->x_};

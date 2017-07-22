@@ -19,7 +19,14 @@ Node::Node(double x, double y, int index, int all_nodes_size)
 double* Node::calcEquation()
 {
 	// ˅
+	// ノードの方程式を構成してreturn
 	double d[all_nodes_size_ + 1];
+	
+	for(int i=0;i<all_nodes_size_+1;i++)
+	{
+		d[i]=1;
+	}
+	
 	return d;
 	// ˄
 }
