@@ -30,7 +30,58 @@ void Driver::solveSimultaneousEquations()
 void Driver::outputResult()
 {
 	// ˅
+    size_t i, j;
+    
+    std::string filename= "./result.vtk";
 
+    std::cout<<"writeField "<<filename<<std::endl;
+    
+    std::ofstream wf;
+    
+    const char *p;
+    p = filename.c_str();
+
+    wf.open(p, std::ios_base::out);
+
+    wf << "# vtk DataFile Version 2.0" << std::endl;
+    wf << filename << std::endl;
+    wf << "ASCII" << std::endl ;
+    wf << "DATASET UNSTRUCTURED_GRID" << std::endl;
+
+    wf << "POINTS " << nodes_size_ << " float" << std::endl;
+    for (i = 0; i < nodes_size_; i++) {
+        wf << nodes_[i]->x_ << " " << nodes_[i]->y_ << " " << 0 << std::endl;
+    }
+
+    wf << "CELLS " << elems_size_ << " " << elems_size_ * (3 + 1) << std::endl;
+    for (i = 0; i < elems_size_; i++) {
+        wf << 3 << " ";
+        for (j = 0; j < 3; j++) {
+            wf << elems_[i]->nodes_[j]->index_ ;
+            if (j != 2) {
+                wf << " ";
+            }
+        }
+        wf << std::endl;
+    }
+
+    wf << "CELL_TYPES " << elems_size_ << std::endl;
+    for (i = 0; i < elems_.size(); i++) {
+        wf << 5 <<std::endl;
+    }
+
+
+    wf << "POINT_DATA " << nodes_size_ << std::endl;
+    wf << "SCALARS t double 1" << std::endl;
+    wf << "LOOKUP_TABLE default" << std::endl;
+    for (i = 0; i < nodes_size_; i++) {
+//                wf << nodes_[i]->t << std::endl;
+		                wf << i << std::endl;
+
+    }
+
+    std::cout<<"write file end"<<std::endl;
+    wf.close();
 	// ˄
 }
 

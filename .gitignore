@@ -40,3 +40,6 @@ std::vector.*
 # diff file
 *.cpp~
 
+# rusult file
+*.vtk
+
