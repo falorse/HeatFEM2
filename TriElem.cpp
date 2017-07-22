@@ -27,8 +27,8 @@ void TriElem::calcInvariant()
 	{
 		dn_dx_[i]=0.5*a[i]/area_;
 		dn_dy_[i]=0.5*b[i]/area_;
-		//TODO 形状関数積分は面積＊三分の１で近似 q_by_lambdaも多分入力値
-		q_by_lambda_=1;
+		//TODO 形状関数積分は面積＊三分の１で近似 q_by_lambdaは今回は発熱なしなのでゼロ
+		q_by_lambda_=0;
 		int_nq_by_lambda_[i]=0.33*area_*q_by_lambda_;
 	}
 	

@@ -1,6 +1,8 @@
 // ˅
 #include "Driver.h"
 #include "Node.h"
+
+typedef Eigen::SparseMatrix<double> SpMat;
 // ˄
 
 void Driver::calcInvariants()
@@ -17,20 +19,19 @@ void Driver::calcEquations()
 {
 	// ˅
 	// 各ノードの方程式を取得して、全体の連立方程式の左の行列と右のベクトルを構成する
-
+	int i,j;
+	
 	left_mat_ = new double[nodes_size_ * nodes_size_];
 	right_vector_ = new double[nodes_size_];
 
-
-	for (int i = 0; i < nodes_size_; i++) {
+//#pragma omp parallel for private(j)
+	for (i = 0; i < nodes_size_; i++) {
 		double* equ = nodes_[i]->calcEquation();
-		for (int j = 0; j < nodes_size_; j++) {
+		for (j = 0; j < nodes_size_; j++) {
 			left_mat_[i * nodes_size_ + j] = equ[j];
 		}
 		right_vector_[i] = equ[nodes_size_];
 	}
-
-	outputEquationslog();
 
 	// ˄
 }
@@ -38,13 +39,47 @@ void Driver::calcEquations()
 void Driver::solveSimultaneousEquations()
 {
 	// ˅
+	//行列とベクトルをEigen形式に変換
+	outputEquationslog();
 
+
+	SpMat left_mat(nodes_size_, nodes_size_);
+	Eigen::VectorXd right_vec(nodes_size_);
+
+	for (int i = 0; i < nodes_size_; i++) {
+		for (int j = 0; j < nodes_size_; j++) {
+			left_mat.insert(i, j) = left_mat_[i * nodes_size_ + j];
+		}
+	}
+
+	delete[] left_mat_;
+
+	for (int i = 0; i < nodes_size_; i++) {
+		right_vec(i) = right_vector_[i];
+	}
+
+	delete[] right_vector_;
+
+	// 計算
+	Eigen::SimplicialCholesky<SpMat> chol(left_mat);
+	Eigen::VectorXd tempretureVec = chol.solve(right_vec);
+
+	for (int i = 0; i < nodes_size_; i++) {
+		nodes_[i]->t_ = tempretureVec[i];
+	}
+
+	Logger::out << "tempreture Vec" << std::endl;
+	for (int i = 0; i < nodes_size_; i++) {
+		Logger::out << tempretureVec[i] << " ";
+	}
+	Logger::out << std::endl;
 	// ˄
 }
 
 void Driver::outputResult()
 {
 	// ˅
+	// paraviewで読めるファイルを出力する
 	size_t i, j;
 
 	std::string filename = "./result.vtk";
@@ -98,7 +133,6 @@ void Driver::outputResult()
 void Driver::readInputFiles()
 {
 	// ˅
-
 	readMeshFile();
 
 	readBoundaryFile();
@@ -156,6 +190,8 @@ void Driver::readMeshFile()
 			nodes_.at(index[j] - 1)->elems_.push_back(elem);
 		}
 
+		elem->q_by_lambda_=atof(nodes_indexes.at(3).c_str());
+		
 		elem->setNodes(nodes_.at(index[0] - 1), nodes_.at(index[1] - 1), nodes_.at(index[2] - 1));
 
 		elems_.push_back(elem);
@@ -229,14 +265,14 @@ std::vector<string> Driver::split(string str, char sep)
 
 void Driver::outputEquationslog()
 {
-	Logger::out<<"outputEquationsLog"<<std::endl;
+	Logger::out << "outputEquationsLog" << std::endl;
 	for (int i = 0; i < nodes_size_; i++) {
 		for (int j = 0; j < nodes_size_; j++) {
 			Logger::out << left_mat_[i * nodes_size_ + j] << " ";
 		}
-		Logger::out<< "| t_"<<i<< " = "<<right_vector_[i];
+		Logger::out << "| t_" << i << " = " << right_vector_[i];
 		Logger::out << std::endl;
 	}
-	
+
 }
 // ˄

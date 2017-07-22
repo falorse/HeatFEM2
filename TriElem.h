@@ -7,7 +7,7 @@
 
 // ˅
 #include "Node.h"
-
+#include "iostream"
 class Node;
 // ˄
 
@@ -42,11 +42,7 @@ public:
 
 	int index_;
 
-private:
-
 	double q_by_lambda_;
-
-public:
 
 	// dn_dx,dn_dy,int_nq_by_lambda_,area_を計算してセット
 	void calcInvariant();
