@@ -36,7 +36,7 @@ private:
 	double* left_mat_;
 
 	// 連立方程式の右辺のn列ベクトル
-	double* right_vector;
+	double* right_vector_;
 
 	int elems_size_;
 
