@@ -50,20 +50,20 @@ void Driver::solveSimultaneousEquations()
 	SpMat left_mat(nodes_size_, nodes_size_);
 	Eigen::VectorXd right_vec(nodes_size_);
 
-//#pragma omp parallel for private(j)
+	//#pragma omp parallel for private(j)
 	for (i = 0; i < nodes_size_; i++) {
 		for (j = 0; j < nodes_size_; j++) {
 			left_mat.insert(i, j) = left_mat_[i * nodes_size_ + j];
 		}
 	}
 
-//#pragma omp parallel for
+	//#pragma omp parallel for
 	for (i = 0; i < nodes_size_; i++) {
 		right_vec(i) = right_vector_[i];
 	}
 
-		delete[] left_mat_;
-		delete[] right_vector_;
+	delete[] left_mat_;
+	delete[] right_vector_;
 	//	Logger::out << "Matrix :\n" << left_mat << std::endl << "vec :\n" << right_vec << std::endl;
 
 	// 計算 
@@ -157,7 +157,8 @@ void Driver::readMeshFile()
 	size_t i, j;
 
 	if (in.fail()) {
-		//TODO例外を追加
+		cout << meshFile << "が見つかりませんでした" << endl;
+		exit(1);
 	}
 
 	//nodeの情報を登録
@@ -211,15 +212,16 @@ void Driver::readMeshFile()
 void Driver::readBoundaryFile()
 {
 	// ˅
-	string meshFile = fileDir_ + "/boundary.dat";
+	string boundaryFile = fileDir_ + "/boundary.dat";
 
-	ifstream in(meshFile.c_str());
+	ifstream in(boundaryFile.c_str());
 	string str;
 
 	size_t i, j;
 
 	if (in.fail()) {
-		//TODO例外を追加
+		cout << boundaryFile << "が見つかりませんでした" << endl;
+		exit(1);
 	}
 
 	//nodeの情報を登録
