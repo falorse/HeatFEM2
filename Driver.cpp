@@ -42,44 +42,44 @@ void Driver::solveSimultaneousEquations()
 	//行列とベクトルをEigen形式に変換
 	int i, j;
 
+	// 並列化用
+	Eigen::initParallel();
+	Eigen::setNbThreads(omp_get_max_threads());
+	Logger::out << "Eigen omp threads num: " << Eigen::nbThreads() << " of all " << omp_get_max_threads() << " threads" << std::endl;
+
 	SpMat left_mat(nodes_size_, nodes_size_);
 	Eigen::VectorXd right_vec(nodes_size_);
 
-	//#pragma omp parallel for private(j)
+//#pragma omp parallel for private(j)
 	for (i = 0; i < nodes_size_; i++) {
 		for (j = 0; j < nodes_size_; j++) {
 			left_mat.insert(i, j) = left_mat_[i * nodes_size_ + j];
 		}
 	}
 
-	delete[] left_mat_;
-
+//#pragma omp parallel for
 	for (i = 0; i < nodes_size_; i++) {
 		right_vec(i) = right_vector_[i];
 	}
 
-	delete[] right_vector_;
+		delete[] left_mat_;
+		delete[] right_vector_;
+	//	Logger::out << "Matrix :\n" << left_mat << std::endl << "vec :\n" << right_vec << std::endl;
 
-	Logger::out << "Matrix :\n" << left_mat << std::endl << "vec :\n" << right_vec << std::endl;
+	// 計算 
 
-	// 計算 コレスキー分解
-	//		Eigen::SimplicialCholesky<SpMat> chol(left_mat);
-	//		Eigen::VectorXd tempretureVec = chol.solve(right_vec);
-
-	// 計算　LU分解
-	Eigen::SparseLU<SpMat > lu;
-	lu.compute(left_mat);
-	Eigen::VectorXd tempretureVec = lu.solve(right_vec);
+	Eigen::VectorXd temparetureVec;
+	Eigen::BiCGSTAB<SpMat > lu;
+#pragma omp parallel 
+	{
+		lu.compute(left_mat);
+	}
+	temparetureVec = lu.solve(right_vec);
 
 	for (i = 0; i < nodes_size_; i++) {
-		nodes_[i]->t_ = tempretureVec[i];
+		nodes_[i]->t_ = temparetureVec[i];
 	}
 
-	Logger::out << "tempreture Vec" << std::endl;
-	for (i = 0; i < nodes_size_; i++) {
-		Logger::out << tempretureVec[i] << " ";
-	}
-	Logger::out << std::endl;
 	// ˄
 }
 
