@@ -4,3 +4,6 @@
 paraview形式のファイルを出力
 
 Eigenをダウンロードして同じディレクトリに配置しないとコンパイルエラーになります。
+
+/HeatFEM2-master$ ./femMain ./inputFiles/case1
+のように使います。
