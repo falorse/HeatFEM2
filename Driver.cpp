@@ -23,7 +23,7 @@ void Driver::calcEquations()
 
 	left_mat_ = new double[nodes_size_ * nodes_size_];
 	right_vector_ = new double[nodes_size_];
-
+	
 #pragma omp parallel for private(j)
 	for (i = 0; i < nodes_size_; i++) {
 		double* equ = nodes_[i]->calcEquation();
@@ -43,8 +43,7 @@ void Driver::solveSimultaneousEquations()
 	int i, j;
 
 	// 並列化用
-	Eigen::initParallel();
-	Eigen::setNbThreads(omp_get_max_threads());
+	Eigen::setNbThreads(4);
 	Logger::out << "Eigen omp threads num: " << Eigen::nbThreads() << " of all " << omp_get_max_threads() << " threads" << std::endl;
 
 	SpMat left_mat(nodes_size_, nodes_size_);
@@ -70,10 +69,7 @@ void Driver::solveSimultaneousEquations()
 
 	Eigen::VectorXd temparetureVec;
 	Eigen::BiCGSTAB<SpMat > lu;
-#pragma omp parallel 
-	{
-		lu.compute(left_mat);
-	}
+	lu.compute(left_mat);
 	temparetureVec = lu.solve(right_vec);
 
 	for (i = 0; i < nodes_size_; i++) {
@@ -89,7 +85,7 @@ void Driver::outputResult()
 	// paraviewで読めるファイルを出力する
 	size_t i, j;
 
-	std::string filename = "./result.vtk";
+	std::string filename = fileDir_ + "/result.vtk";
 
 	std::cout << "writeField " << filename << std::endl;
 

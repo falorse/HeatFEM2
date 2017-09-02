@@ -358,6 +358,14 @@
         <in>Eigen</in>
       </df>
       <df name="inputFiles">
+        <df name="100x100">
+        </df>
+        <df name="20x20">
+        </df>
+        <df name="4x4">
+        </df>
+        <df name="500x500">
+        </df>
         <df name="case1">
           <in>mesh.dat</in>
         </df>
@@ -408,6 +416,8 @@
         <gdb_interceptlist>
           <gdbinterceptoptions gdb_all="false" gdb_unhandled="true" gdb_unexpected="true"/>
         </gdb_interceptlist>
+        <gdb_signals>
+        </gdb_signals>
         <gdb_options>
           <DebugOptions>
           </DebugOptions>
@@ -419,13 +429,18 @@
       </nativedebugger>
       <runprofile version="9">
         <runcommandpicklist>
-          <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" ./inputFiles/case1</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" /inputFiles/case1</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/case1"</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/case2"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/4x4"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/20x20"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/100x10"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/500x500"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/100x100"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/node2612"</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>"${OUTPUT_PATH}"   "./inputFiles/case2"</runcommand>
+        <runcommand>"${OUTPUT_PATH}"   "./inputFiles/node2612"</runcommand>
         <rundir>.</rundir>
         <buildfirst>true</buildfirst>
         <terminal-type>0</terminal-type>

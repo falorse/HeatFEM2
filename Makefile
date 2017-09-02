@@ -1,7 +1,7 @@
 #makefile
 
 CC = g++
-CCOPENMP = g++ -fopenmp
+CCOPENMP = g++ -fopenmp -O3
 
 CFLAGS = -g -Wall
 
