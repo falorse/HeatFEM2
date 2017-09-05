@@ -57,7 +57,9 @@ double* Node::calcEquation()
 		for (int j = 0; j < 3; j++) {
 			// このノードを持っていない要素の場合ここで例外を出す
 			assert(0<=elem->node_indexes_[j]-1&&elem->node_indexes_[j]-1<all_nodes_size_);
-			equ[elem->node_indexes_[j] - 1] += (-1) * elem->dn_dx_[index_for_elem] * elem->dn_dx_[j] - elem->dn_dy_[index_for_elem] * elem->dn_dy_[j];
+			
+			double value = (-1) * elem->dn_dx_[index_for_elem] * elem->dn_dx_[j] - elem->dn_dy_[index_for_elem] * elem->dn_dy_[j];
+			equ[elem->node_indexes_[j] - 1] += value;
 		}
 
 		equ[all_nodes_size_] -= elem->int_nq_by_lambda_[index_for_elem];
