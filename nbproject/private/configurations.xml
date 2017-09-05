@@ -436,11 +436,11 @@
           <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/4x4"</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/20x20"</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/100x10"</runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/500x500"</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/100x100"</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/node2612"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/500x500"</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>"${OUTPUT_PATH}"   "./inputFiles/node2612"</runcommand>
+        <runcommand>"${OUTPUT_PATH}"   "./inputFiles/500x500"</runcommand>
         <rundir>.</rundir>
         <buildfirst>true</buildfirst>
         <terminal-type>0</terminal-type>
