@@ -47,12 +47,18 @@ void Driver::solveSimultaneousEquations()
 	Logger::out << "Eigen omp threads num: " << Eigen::nbThreads() << " of all " << omp_get_max_threads() << " threads" << std::endl;
 
 	SpMat left_mat(nodes_size_, nodes_size_);
+//	Eigen::MatrixXd left_mat(nodes_size_,nodes_size_);
 	Eigen::VectorXd right_vec(nodes_size_);
 
 	//#pragma omp parallel for private(j)
 	for (i = 0; i < nodes_size_; i++) {
 		for (j = 0; j < nodes_size_; j++) {
 			left_mat.insert(i, j) = left_mat_[i * nodes_size_ + j];
+//			if(i == nodes_size_ -1 && j == nodes_size_ -1){
+//				left_mat << left_mat_[i * nodes_size_ + j];
+//			}else{
+//			left_mat << left_mat_[i * nodes_size_ + j] ;
+//			}
 		}
 	}
 
@@ -71,6 +77,9 @@ void Driver::solveSimultaneousEquations()
 	Eigen::BiCGSTAB<SpMat > lu;
 	lu.compute(left_mat);
 	temparetureVec = lu.solve(right_vec);
+//	temparetureVec = left_mat.fullPivLu().solve(right_vec);
+	
+	
 
 	for (i = 0; i < nodes_size_; i++) {
 		nodes_[i]->t_ = temparetureVec[i];

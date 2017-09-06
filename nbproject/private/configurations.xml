@@ -370,6 +370,10 @@
           <in>mesh.dat</in>
         </df>
         <df name="case2">
+          <in>boundary.dat</in>
+        </df>
+        <df name="case3">
+          <in>mesh.dat</in>
         </df>
         <df name="node1000000">
         </df>
@@ -416,8 +420,6 @@
         <gdb_interceptlist>
           <gdbinterceptoptions gdb_all="false" gdb_unhandled="true" gdb_unexpected="true"/>
         </gdb_interceptlist>
-        <gdb_signals>
-        </gdb_signals>
         <gdb_options>
           <DebugOptions>
           </DebugOptions>
@@ -429,18 +431,18 @@
       </nativedebugger>
       <runprofile version="9">
         <runcommandpicklist>
-          <runcommandpicklistitem>"${OUTPUT_PATH}" ./inputFiles/case1</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" /inputFiles/case1</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/case1"</runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/case2"</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/4x4"</runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/20x20"</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/100x10"</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/100x100"</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/node2612"</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/500x500"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/20x20"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/case2"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/case3"</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>"${OUTPUT_PATH}"   "./inputFiles/500x500"</runcommand>
+        <runcommand>"${OUTPUT_PATH}"   "./inputFiles/case3"</runcommand>
         <rundir>.</rundir>
         <buildfirst>true</buildfirst>
         <terminal-type>0</terminal-type>

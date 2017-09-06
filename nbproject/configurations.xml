@@ -6,6 +6,12 @@
         <df name="case1">
           <in>mesh.dat</in>
         </df>
+        <df name="case2">
+          <in>boundary.dat</in>
+        </df>
+        <df name="case3">
+          <in>mesh.dat</in>
+        </df>
       </df>
       <in>Driver.cpp</in>
       <in>Logger.cpp</in>
@@ -58,6 +64,10 @@
       <item path="femMain.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="inputFiles/case1/mesh.dat" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="inputFiles/case2/boundary.dat" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="inputFiles/case3/mesh.dat" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>
