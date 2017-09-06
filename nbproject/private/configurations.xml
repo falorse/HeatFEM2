@@ -360,9 +360,20 @@
       <df name="inputFiles">
         <df name="100x100">
         </df>
+        <df name="10x10sq">
+        </df>
         <df name="20x20">
         </df>
+        <df name="20x20sq">
+          <in>boundary.dat</in>
+        </df>
+        <df name="2x2sq">
+          <in>boundary.dat</in>
+        </df>
         <df name="4x4">
+        </df>
+        <df name="4x4sq">
+          <in>boundary.dat</in>
         </df>
         <df name="500x500">
         </df>
@@ -431,18 +442,18 @@
       </nativedebugger>
       <runprofile version="9">
         <runcommandpicklist>
-          <runcommandpicklistitem>"${OUTPUT_PATH}" /inputFiles/case1</runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/case1"</runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/4x4"</runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/100x10"</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/100x100"</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/node2612"</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/500x500"</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/20x20"</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/case2"</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/case3"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/2x2sq"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/10x10sq"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/20x20sq"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"   "./inputFiles/4x4sq"</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>"${OUTPUT_PATH}"   "./inputFiles/case3"</runcommand>
+        <runcommand>"${OUTPUT_PATH}"   "./inputFiles/4x4sq"</runcommand>
         <rundir>.</rundir>
         <buildfirst>true</buildfirst>
         <terminal-type>0</terminal-type>

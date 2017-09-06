@@ -203,7 +203,8 @@ void Driver::readMeshFile()
 			nodes_.at(index[j] - 1)->elems_.push_back(elem);
 		}
 
-		elem->q_by_lambda_ = atof(nodes_indexes.at(3).c_str());
+//		elem->q_by_lambda_ = atof(nodes_indexes.at(3).c_str());
+		elem->q_by_lambda_ = 0;
 
 		elem->setNodes(nodes_.at(index[0] - 1), nodes_.at(index[1] - 1), nodes_.at(index[2] - 1));
 

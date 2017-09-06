@@ -3,6 +3,15 @@
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <df root="." name="0">
       <df name="inputFiles">
+        <df name="20x20sq">
+          <in>boundary.dat</in>
+        </df>
+        <df name="2x2sq">
+          <in>boundary.dat</in>
+        </df>
+        <df name="4x4sq">
+          <in>boundary.dat</in>
+        </df>
         <df name="case1">
           <in>mesh.dat</in>
         </df>
@@ -62,6 +71,12 @@
       <item path="TriElem.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="femMain.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="inputFiles/20x20sq/boundary.dat" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="inputFiles/2x2sq/boundary.dat" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="inputFiles/4x4sq/boundary.dat" ex="false" tool="3" flavor2="0">
       </item>
       <item path="inputFiles/case1/mesh.dat" ex="false" tool="3" flavor2="0">
       </item>
