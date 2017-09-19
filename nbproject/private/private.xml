@@ -19,17 +19,37 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/home/shota/gitRepos/HeatFEM2/inputFiles/case2/mesh.dat</file>
+            <file>file:/home/shota/gitRepos/HeatFEM2/inputFiles/4x4/Screenshot%20from%202017-09-06%2011:01:03.png</file>
+            <file>file:/home/shota/gitRepos/HeatFEM2/inputFiles/10x10sq/boundary.dat</file>
+            <file>file:/home/shota/gitRepos/HeatFEM2/inputFiles/10x10sq/mesh.dat</file>
+            <file>file:/home/shota/gitRepos/HeatFEM2/inputFiles/20x20/result_back.vtk</file>
             <file>file:/home/shota/gitRepos/HeatFEM2/inputFiles/100x100/result.vtk</file>
             <file>file:/home/shota/gitRepos/HeatFEM2/inputFiles/4x4/result.vtk</file>
-            <file>file:/home/shota/gitRepos/HeatFEM2/Logger.cpp</file>
-            <file>file:/home/shota/gitRepos/HeatFEM2/Driver.h</file>
-            <file>file:/home/shota/gitRepos/HeatFEM2/femMain.cpp</file>
-            <file>file:/home/shota/gitRepos/HeatFEM2/inputFiles/4x4/mesh.dat</file>
-            <file>file:/home/shota/gitRepos/HeatFEM2/Driver.cpp</file>
-            <file>file:/home/shota/gitRepos/HeatFEM2/logfile.txt</file>
+            <file>file:/home/shota/gitRepos/HeatFEM2/inputFiles/case3/boundary.dat</file>
+            <file>file:/home/shota/gitRepos/HeatFEM2/inputFiles/4x4sq/mesh.dat</file>
+            <file>file:/home/shota/gitRepos/HeatFEM2/inputFiles/20x20/mesh.dat</file>
+            <file>file:/home/shota/gitRepos/HeatFEM2/inputFiles/case3/result.vtk</file>
             <file>file:/home/shota/gitRepos/HeatFEM2/inputFiles/4x4/boundary.dat</file>
-            <file>file:/home/shota/gitRepos/HeatFEM2/inputFiles/500x500/boundary.dat</file>
             <file>file:/home/shota/gitRepos/HeatFEM2/Makefile</file>
+            <file>file:/home/shota/gitRepos/HeatFEM2/inputFiles/2x2sq/result.vtk</file>
+            <file>file:/home/shota/gitRepos/HeatFEM2/inputFiles/20x20/result.vtk</file>
+            <file>file:/home/shota/gitRepos/HeatFEM2/inputFiles/4x4/mesh.dat</file>
+            <file>file:/home/shota/gitRepos/HeatFEM2/inputFiles/4x4sq/boundary.dat</file>
+            <file>file:/home/shota/gitRepos/HeatFEM2/Node.cpp</file>
+            <file>file:/home/shota/gitRepos/HeatFEM2/inputFiles/20x20/boundary.dat</file>
+            <file>file:/home/shota/gitRepos/HeatFEM2/inputFiles/500x500/boundary.dat</file>
+            <file>file:/home/shota/gitRepos/HeatFEM2/inputFiles/10x10sq/result.vtk</file>
+            <file>file:/home/shota/gitRepos/HeatFEM2/inputFiles/2x2sq/boundary.dat</file>
+            <file>file:/home/shota/gitRepos/HeatFEM2/Driver.h</file>
+            <file>file:/home/shota/gitRepos/HeatFEM2/inputFiles/2x2sq/mesh.dat</file>
+            <file>file:/home/shota/gitRepos/HeatFEM2/inputFiles/20x20sq/t.png</file>
+            <file>file:/home/shota/gitRepos/HeatFEM2/inputFiles/case2/result_bask.vtk</file>
+            <file>file:/home/shota/gitRepos/HeatFEM2/Driver.cpp</file>
+            <file>file:/home/shota/gitRepos/HeatFEM2/inputFiles/20x20sq/mesh.dat</file>
+            <file>file:/home/shota/gitRepos/HeatFEM2/inputFiles/20x20sq/boundary.dat</file>
+            <file>file:/home/shota/gitRepos/HeatFEM2/inputFiles/4x4sq/result.vtk</file>
+            <file>file:/home/shota/gitRepos/HeatFEM2/logfile.txt</file>
         </group>
     </open-files>
 </project-private>
