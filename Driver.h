@@ -24,6 +24,8 @@
 
 using namespace std;
 
+typedef Eigen::SparseMatrix<double> SpMat;
+typedef Eigen::VectorXd vectorXd;
 
 class Driver
 {
@@ -46,7 +48,7 @@ private:
 	double* left_mat_;
 
 	// 連立方程式の右辺のn列ベクトル
-	double* right_vector_;
+	double* right_vec_;
 
 	int elems_size_;
 
@@ -69,7 +71,7 @@ public:
         double* mat, int row);
 
 	// paraviewで見れる形でアウトプット
-	void outputNodeTemperatures();
+	void writeResultFile();
 
 	void readInputFiles();
 
@@ -83,7 +85,13 @@ public:
 	// （境界条件数）、（base or natural,境界上ノード数）、（ノード番号、境界条件の値）＊境界上ノード数
 	void readBoundaryFile();
 
+    SpMat initializeEigenMat();
+
+    vectorXd initializeEigenVec();
 	
+    vectorXd solveByLU(SpMat left_mat,vectorXd right_vec);
+    
+    void setTemperature(vectorXd temperature_vec);
 public:
 	std::vector<string> split(const string str, char sep);
 	

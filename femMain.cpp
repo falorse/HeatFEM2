@@ -8,33 +8,33 @@
 
 using namespace std;
 
-int main(int argc, char* argv[])
-{
-    if(argc != 2){
+int main(int argc, char* argv[]) {
+    
+    if (argc != 2) {
         cout << "invalid input" << endl;
         cout << "usage: ./femMain input_file_directory" << endl <<
             "input_file_firectory must have mash.dat and boundary.dat" << cout;
         exit(1);
     }
-    
-	Logger logger;
-	logger.openLog();
-	
-	Driver driver;
 
-	driver.fileDir_ = argv[1];
-	
-	driver.readInputFiles();
-	
-	driver.calcElemsInvariants();
-	
-	driver.makeSimultaneousEquations();
+    Logger logger;
+    logger.openLog();
 
-	driver.solveSimultaneousEquations();
-	
-	driver.outputNodeTemperatures();
+    Driver driver;
 
-	logger.closeLog();
+    driver.fileDir_ = argv[1];
 
-	return 0;
+    driver.readInputFiles();
+
+    driver.calcElemsInvariants();
+
+    driver.makeSimultaneousEquations();
+
+    driver.solveSimultaneousEquations();
+
+    driver.writeResultFile();
+
+    logger.closeLog();
+
+    return 0;
 }
