@@ -1,22 +1,22 @@
-// ˅
 
-// ˄
+
+
 
 #ifndef NODE_H_
 #define NODE_H_
 
-// ˅
+
 #include "vector"
 #include "TriElem.h"
 
 class TriElem;
-// ˄
+
 
 class Node
 {
-	// ˅
+	
 
-	// ˄
+	
 
 public:
 
@@ -49,7 +49,7 @@ public:
     
     bool hasBaseCondition();
 
-	// ˅
+	
 public:
 
 	Node();
@@ -69,15 +69,15 @@ protected:
 
 private:
 
-	// ˄
+	
 };
 
-// ˅
 
-// ˄
+
+
 
 #endif	// NODE_H_
 
-// ˅
 
-// ˄
+
+

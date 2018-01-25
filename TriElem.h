@@ -1,22 +1,18 @@
-// ˅
 
-// ˄
+
+
 
 #ifndef TRIELEM_H_
 #define TRIELEM_H_
 
-// ˅
+
 #include "Node.h"
 #include "iostream"
 class Node;
-// ˄
+
 
 class TriElem
 {
-	// ˅
-	
-	// ˄
-
 public:
 
 	// 三角形要素が持つノード
@@ -55,7 +51,7 @@ public:
          double* coefficients, int all_nodes_size);
     
     void calcArea();
-	// ˅
+	
 public:
 	TriElem();
 	
@@ -69,15 +65,11 @@ protected:
 
 private:
 
-	// ˄
+	
 };
-
-// ˅
-
-// ˄
 
 #endif	// TRIELEM_H_
 
-// ˅
 
-// ˄
+
+

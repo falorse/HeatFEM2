@@ -1,11 +1,11 @@
-// ˅
 
-// ˄
+
+
 
 #ifndef DRIVER_H_
 #define DRIVER_H_
 
-// ˅
+
 #include "vector"
 #include "Node.h"
 #include "TriElem.h"
@@ -23,13 +23,13 @@
 #include "./Eigen/SparseLU"
 
 using namespace std;
-// ˄
+
 
 class Driver
 {
-	// ˅
 	
-	// ˄
+	
+	
 
 private:
 
@@ -83,7 +83,7 @@ public:
 	// （境界条件数）、（base or natural,境界上ノード数）、（ノード番号、境界条件の値）＊境界上ノード数
 	void readBoundaryFile();
 
-	// ˅
+	
 public:
 	std::vector<string> split(const string str, char sep);
 	
@@ -94,15 +94,15 @@ protected:
 	
 private:
 	
-	// ˄
+	
 };
 
-// ˅
 
-// ˄
+
+
 
 #endif	// DRIVER_H_
 
-// ˅
 
-// ˄
+
+

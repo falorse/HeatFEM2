@@ -1,4 +1,4 @@
-// ˅
+
 #include <vector>
 #include "TriElem.h"
 #include "Node.h"
@@ -18,11 +18,10 @@ Node::Node(double x, double y, int index, int all_nodes_size) {
 bool Node::hasBaseCondition(){
     return base_condition_ != NULL;
 }
-// ˄
 
 
 double* Node::calcCoefficients() {
-    // ˅
+    
     // ノードの方程式を構成する係数を計算
     // a_0*t_0+a_1*t_1+...=b という方程式のa_0,a_1....,bをcoefficientsに保存
 
@@ -44,9 +43,8 @@ double* Node::calcCoefficients() {
     }
 
     return coefficients;
-    // ˄
 }
 
-// ˅
 
-// ˄
+
+

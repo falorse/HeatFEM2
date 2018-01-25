@@ -1,20 +1,20 @@
-// ˅
 
-// ˄
+
+
 
 #ifndef LOGGER_H_
 #define LOGGER_H_
 
-// ˅
+
 #include "iostream"
 #include "fstream"
-// ˄
+
 
 class Logger
 {
-	// ˅
 	
-	// ˄
+	
+	
 
 public:
 
@@ -22,7 +22,7 @@ public:
 
 	void closeLog();
 
-	// ˅
+	
 public:
 	static std::fstream out;
 	
@@ -34,15 +34,15 @@ protected:
 	
 private:
 	
-	// ˄
+	
 };
 
-// ˅
 
-// ˄
+
+
 
 #endif	// LOGGER_H_
 
-// ˅
 
-// ˄
+
+

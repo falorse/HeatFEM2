@@ -1,16 +1,16 @@
-// ˅
+
 #include "Driver.h"
 #include "Node.h"
 
 typedef Eigen::SparseMatrix<double> SpMat;
-// ˄
+
 
 void Driver::calcElemsInvariants() {
-    // ˅
+    
     for (int i = 0; i < elems_size_; i++) {
         elems_.at(i)->calcInvariants();
     }
-    // ˄
+
 }
 
 void Driver::setCoefficientsToMatRow(double* coefficients_of_equation,
@@ -22,7 +22,7 @@ void Driver::setCoefficientsToMatRow(double* coefficients_of_equation,
 }
 
 void Driver::makeSimultaneousEquations() {
-    // ˅
+    
     // 各ノードの方程式の係数を取得して、全体の連立方程式の左の行列と右のベクトルを構成する
     int i, j;
 
@@ -36,11 +36,11 @@ void Driver::makeSimultaneousEquations() {
 
         right_vector_[i] = coefficients_of_equation[nodes_size_];
     }
-    // ˄
+
 }
 
 void Driver::solveSimultaneousEquations() {
-    // ˅
+    
     //行列とベクトルをEigen形式に変換
     int i, j;
 
@@ -73,11 +73,11 @@ void Driver::solveSimultaneousEquations() {
     for (i = 0; i < nodes_size_; i++) {
         nodes_[i]->t_ = temparetureVec[i];
     }
-    // ˄
+
 }
 
 void Driver::outputNodeTemperatures() {
-    // ˅
+    
     // paraviewで読めるファイルを出力する
     size_t i, j;
 
@@ -126,19 +126,19 @@ void Driver::outputNodeTemperatures() {
 
     std::cout << "write file end" << std::endl;
     wf.close();
-    // ˄
+
 }
 
 void Driver::readInputFiles() {
-    // ˅
+    
     readMeshFile();
 
     readBoundaryFile();
-    // ˄
+
 }
 
 void Driver::readMeshFile() {
-    // ˅
+    
     string mesh_file_path = fileDir_ + "/mesh.dat";
 
     ifstream mesh_file(mesh_file_path.c_str());
@@ -195,11 +195,11 @@ void Driver::readMeshFile() {
     }
 
     mesh_file.close();
-    // ˄
+
 }
 
 void Driver::readBoundaryFile() {
-    // ˅
+    
     string boundary_file_path = fileDir_ + "/boundary.dat";
 
     ifstream boundary_file(boundary_file_path.c_str());
@@ -244,10 +244,10 @@ void Driver::readBoundaryFile() {
     }
 
     boundary_file.close();
-    // ˄
+
 }
 
-// ˅
+
 
 std::vector<string> Driver::split(string str, char sep) {
     vector<string> v;
@@ -269,4 +269,4 @@ void Driver::outputEquationslog() {
         Logger::out << std::endl;
     }
 }
-// ˄
+
