@@ -91,7 +91,7 @@ public:
 	
     vectorXd solveByLU(SpMat left_mat,vectorXd right_vec);
     
-    void setTemperature(vectorXd temperature_vec);
+    void setTemperatures(vectorXd temperature_vec);
 public:
 	std::vector<string> split(const string str, char sep);
 	

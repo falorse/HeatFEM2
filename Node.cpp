@@ -24,9 +24,7 @@ double* Node::calcCoefficients() {
     
     // ノードの方程式を構成する係数を計算
     // a_0*t_0+a_1*t_1+...=b という方程式のa_0,a_1....,bをcoefficientsに保存
-
     double* coefficients = new double[all_nodes_size_ + 1];
-
     for (int i = 0; i < all_nodes_size_ + 1; i++) {
         coefficients[i] = 0;
     }

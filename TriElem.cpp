@@ -19,6 +19,7 @@ void TriElem::calcArea() {
 
 void TriElem::calcInvariants() {
     // dn_dx,dn_dy,int_nq_by_lambda_,area_を計算してセット
+    calcArea();
 
     double y_diffs[3] = {
         nodes_[1]->y_ - nodes_[2]->y_,
@@ -32,8 +33,6 @@ void TriElem::calcInvariants() {
         nodes_[1]->x_ - nodes_[0]->x_
     };
 
-    calcArea();
-
     // 形状関数のx,y微分, N*q/lambdaの領域積分
     for (int i = 0; i < 3; i++) {
         dn_dx_[i] = 0.5 * y_diffs[i] / area_;
@@ -41,7 +40,6 @@ void TriElem::calcInvariants() {
         q_by_lambda_ = 0;
         int_nq_by_lambda_[i] = q_by_lambda_;
     }
-
 }
 
 void TriElem::setNodes(Node* a, Node* b, Node* c) {

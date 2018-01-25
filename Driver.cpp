@@ -10,7 +10,6 @@ void Driver::calcElemsInvariants() {
     for (int i = 0; i < elems_size_; i++) {
         elems_.at(i)->calcInvariants();
     }
-
 }
 
 void Driver::setCoefficientsToMatRow(double* coefficients_of_equation,
@@ -72,7 +71,7 @@ vectorXd Driver::solveByLU(SpMat left_mat, vectorXd right_vec) {
     return result_vec;
 }
 
-void Driver::setTemperature(vectorXd temperature_vec){
+void Driver::setTemperatures(vectorXd temperature_vec){
     
     for (int i = 0; i < nodes_size_; i++) {
         nodes_[i]->t_ = temperature_vec[i];
@@ -89,7 +88,7 @@ void Driver::solveSimultaneousEquations() {
 
     vectorXd temperature_vec = solveByLU(left_mat, right_vec);
     
-    setTemperature(temperature_vec);
+    setTemperatures(temperature_vec);
 }
 
 void Driver::writeResultFile() {
@@ -142,7 +141,6 @@ void Driver::writeResultFile() {
 
     std::cout << "write file end" << std::endl;
     result_file.close();
-
 }
 
 void Driver::readInputFiles() {
@@ -150,7 +148,6 @@ void Driver::readInputFiles() {
     readMeshFile();
 
     readBoundaryFile();
-
 }
 
 void Driver::readMeshFile() {
@@ -211,7 +208,6 @@ void Driver::readMeshFile() {
     }
 
     mesh_file.close();
-
 }
 
 void Driver::readBoundaryFile() {
