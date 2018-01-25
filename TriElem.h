@@ -26,7 +26,7 @@ public:
 	int node_indexes_[3];
 
 	// 形状関数
-	double n_[3];
+	double ns_[3];
 
 	// 形状関数のx偏微分
 	double dn_dx_[3];
@@ -45,10 +45,16 @@ public:
 	double q_by_lambda_;
 
 	// dn_dx,dn_dy,int_nq_by_lambda_,area_を計算してセット
-	void calcInvariant();
+	void calcInvariants();
 
 	void setNodes(Node* a, Node* b, Node* c);
 
+    int searchNodeNumber(int node_index);
+    
+    void addContribution(int node_number,
+         double* coefficients, int all_nodes_size);
+    
+    void calcArea();
 	// ˅
 public:
 	TriElem();

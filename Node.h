@@ -7,6 +7,7 @@
 
 // ˅
 #include "vector"
+#include "TriElem.h"
 
 class TriElem;
 // ˄
@@ -42,7 +43,11 @@ public:
 
 	// ノードごとの方程式の、各係数を計算してdriverに返す
 	// n+1個のdoubleの配列になる
-	double* calcEquation();
+	double* calcCoefficients();
+
+    int searchIndexForElem(TriElem* elem);
+    
+    bool hasBaseCondition();
 
 	// ˅
 public:

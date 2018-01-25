@@ -10,15 +10,14 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-	clock_t st, en;
-	st = clock();
-
-	assert(argc == 2);
-
-	Eigen::initParallel();
-
+    if(argc != 2){
+        cout << "invalid input" << endl;
+        cout << "usage: ./femMain input_file_directory" << endl <<
+            "input_file_firectory must have mash.dat and boundary.dat" << cout;
+        exit(1);
+    }
+    
 	Logger logger;
-
 	logger.openLog();
 	
 	Driver driver;
@@ -27,15 +26,13 @@ int main(int argc, char* argv[])
 	
 	driver.readInputFiles();
 	
-	omp_set_num_threads(omp_get_max_threads());
-
-	driver.calcInvariants();
+	driver.calcElemsInvariants();
 	
-	driver.calcEquations();
+	driver.makeSimultaneousEquations();
 
 	driver.solveSimultaneousEquations();
 	
-	driver.outputResult();
+	driver.outputNodeTemperatures();
 
 	logger.closeLog();
 

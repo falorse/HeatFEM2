@@ -5,76 +5,46 @@
 #include "Logger.h"
 #include "assert.h"
 
-Node::Node(double x, double y, int index, int all_nodes_size)
-{
-	x_ = x;
-	y_ = y;
-	index_ = index;
-	all_nodes_size_ = all_nodes_size;
-	base_condition_ = 0;
-	natural_condition_ = 0;
-	elems_.clear();
+Node::Node(double x, double y, int index, int all_nodes_size) {
+    x_ = x;
+    y_ = y;
+    index_ = index;
+    all_nodes_size_ = all_nodes_size;
+    base_condition_ = 0;
+    natural_condition_ = 0;
+    elems_.clear();
+}
+
+bool Node::hasBaseCondition(){
+    return base_condition_ != NULL;
 }
 // ˄
 
-double* Node::calcEquation()
-{
-	// ˅
-	// ノードの方程式を構成してreturn
-	// a_0*t_0+a_1+t_1+...=b という方程式になるので、a_0,a_1....,bをequに保存してreturn
 
-	double* equ=new double[all_nodes_size_+1];
-	for(int i=0;i<all_nodes_size_+1;i++)
-	{
-		equ[i]=0;
-	}
-	
-	// 基本境界条件導入
-	if(base_condition_!=NULL)
-	{
-		equ[index_-1]=1;
-		equ[all_nodes_size_]=base_condition_;
-		return equ;
-	}
-	
-	for (int i = 0; i < elems_.size(); i++) {
-		TriElem* elem = elems_.at(i);
+double* Node::calcCoefficients() {
+    // ˅
+    // ノードの方程式を構成する係数を計算
+    // a_0*t_0+a_1*t_1+...=b という方程式のa_0,a_1....,bをcoefficientsに保存
 
-		// dn_dxなどの番号0(0,1,2) あとで3のままならassert
-		int index_for_elem = 3;
+    double* coefficients = new double[all_nodes_size_ + 1];
 
-		for (int j = 0; j < 3; j++) {
-			if (elem->node_indexes_[j] == index_) {
-				index_for_elem = j;
-			}
-		}
-		
-		assert(index_for_elem!=3);
-		
-		// 各要素の積分によって計算される係数を計算
-		// dn_dx_[index_for_elem]*dn_dx_[0]-dn_dy_[index_for_elem]*dn_dy_[0] が 一番目のノードの温度に対する係数
+    for (int i = 0; i < all_nodes_size_ + 1; i++) {
+        coefficients[i] = 0;
+    }
 
-		for (int j = 0; j < 3; j++) {
-			// このノードを持っていない要素の場合ここで例外を出す
-			assert(0<=elem->node_indexes_[j]-1&&elem->node_indexes_[j]-1<all_nodes_size_);
-			
-			double value = (-1) * elem->dn_dx_[index_for_elem] * elem->dn_dx_[j] - elem->dn_dy_[index_for_elem] * elem->dn_dy_[j];
-			equ[elem->node_indexes_[j] - 1] += value;
-		}
+    if (hasBaseCondition()) {
+        coefficients[index_ - 1] = 1;
+        coefficients[all_nodes_size_] = base_condition_;
+        return coefficients;
+    }
 
-		equ[all_nodes_size_] -= elem->int_nq_by_lambda_[index_for_elem];
-		
-	}
+    for (int i = 0; i < elems_.size(); i++) {
+        TriElem* elem = elems_.at(i);
+        elem->addContribution(index_, coefficients, all_nodes_size_);
+    }
 
-//	Logger::out<<"calcEqu"<<index_<<std::endl;
-//	for(int i=0;i<all_nodes_size_+1;i++)
-//	{
-//		Logger::out<<equ[i]<< " ";
-//	}
-//	Logger::out<<std::endl;
-	
-	return equ;
-	// ˄
+    return coefficients;
+    // ˄
 }
 
 // ˅

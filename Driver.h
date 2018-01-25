@@ -57,16 +57,19 @@ public:
 	string fileDir_;
 
 	// 各要素で、後にノードが方程式の計算で使う値を計算して保存する
-	void calcInvariants();
+	void calcElemsInvariants();
 
-	// ノードごとの方程式を計算してleft_mat_とright_vectorに入れる
-	void calcEquations();
+	// ノードごとの方程式を計算して連立方程式を立てる
+	void makeSimultaneousEquations();
 
 	// 連立方程式を解いて、各ノードに温度をセットする
 	void solveSimultaneousEquations();
 
+    void setCoefficientsToMatRow(double* coefficients_of_equation,
+        double* mat, int row);
+
 	// paraviewで見れる形でアウトプット
-	void outputResult();
+	void outputNodeTemperatures();
 
 	void readInputFiles();
 
