@@ -37,27 +37,27 @@ void Driver::makeSimultaneousEquations() {
     }
 }
 
-SpMat Driver::initializeEigenMat(){
-    SpMat left_mat(nodes_size_, nodes_size_);
+SpMat Driver::initializeEigenMat(double* mat){
+    SpMat eigen_mat(nodes_size_, nodes_size_);
 
     for (int i = 0; i < nodes_size_; i++) {
         for (int j = 0; j < nodes_size_; j++) {
-            left_mat.insert(i, j) = left_mat_[i * nodes_size_ + j];
+            eigen_mat.insert(i, j) =  mat[i * nodes_size_ + j];
         }
     }
     
-    return left_mat;
+    return eigen_mat;
 }
 
-vectorXd Driver::initializeEigenVec(){
+vectorXd Driver::initializeEigenVec(double* vec){
 
-    vectorXd right_vec(nodes_size_);
+    vectorXd eigen_vec(nodes_size_);
 
     for (int i = 0; i < nodes_size_; i++) {
-        right_vec(i) = right_vec_[i];
+        eigen_vec(i) = vec[i];
     }
     
-    return right_vec;
+    return eigen_vec;
 }
 
 vectorXd Driver::solveByLU(SpMat left_mat, vectorXd right_vec) {
@@ -80,8 +80,8 @@ void Driver::setTemperatures(vectorXd temperature_vec){
 
 void Driver::solveSimultaneousEquations() {
     
-    SpMat left_mat = initializeEigenMat();
-    vectorXd right_vec = initializeEigenVec();
+    SpMat left_mat = initializeEigenMat(left_mat_);
+    vectorXd right_vec = initializeEigenVec(right_vec_);
 
     delete[] left_mat_;
     delete[] right_vec_;

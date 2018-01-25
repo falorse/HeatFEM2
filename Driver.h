@@ -85,9 +85,9 @@ public:
 	// （境界条件数）、（base or natural,境界上ノード数）、（ノード番号、境界条件の値）＊境界上ノード数
 	void readBoundaryFile();
 
-    SpMat initializeEigenMat();
+    SpMat initializeEigenMat(double* mat);
 
-    vectorXd initializeEigenVec();
+    vectorXd initializeEigenVec(double* vec);
 	
     vectorXd solveByLU(SpMat left_mat,vectorXd right_vec);
     
